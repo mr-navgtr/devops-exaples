@@ -13,11 +13,17 @@ provider "aws" {
   region = "us-west-2"
 }
 
+
 resource "aws_instance" "app_server" {
   ami           = "ami-830c94e3"
   instance_type = "t2.micro"
-
   tags = {
     Name = "ExampleAppServerInstance"
   }
+}
+
+
+output "instance_public_ip" {
+  description = "The public IP address of the web server"
+  value       = aws_instance.app_server.public_ip
 }

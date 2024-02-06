@@ -13,21 +13,34 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-2"
+   region = var.instance_reg
 }
 
 resource "aws_instance" "app_server" {
  ami = var.instance_ami
- instance_type = "t2.micro"
+ instance_type = var.instance_type
+
 
   tags = {
     Name = "Minion" 
   }
 }
 
-varible.tf
+
 
 variable "instance_ami" {
 description = "ami of the instance"
 default = "ami-0866a04d72a1f5479"
 }
+
+variable "instance_type" {
+description = "instance type"
+default = "t2.micro"
+}
+
+
+variable "instance_reg" {
+description = "region"
+default = "us-east-2"
+}
+
